@@ -10,7 +10,7 @@ class WhatsAppWebhookController extends Controller
     /**
      * Recebe mensagens via webhook da Evolution API.
      */
-    public function handle(Request $request)
+    public function handleReceivingMessageEvent(Request $request)
     {
         // Captura a mensagem recebida
         $data = $request->all();
@@ -51,8 +51,8 @@ class WhatsAppWebhookController extends Controller
      */
     protected function sendMessage($phoneNumber, $message)
     {
-        $apiUrl = env('EVOLUTION_API_URL', 'http://localhost:8085');
-        $apiKey = env('EVOLUTION_API_KEY', 'goSftSVdO4zPNAeaXmxSqkjs1cEV1mG9ZCfKKDPaIbhH6rNo3srg0RvEJwuYxA9V');
+        $apiUrl = getenv('EVOLUTION_API_URL');
+        $apiKey = getenv('EVOLUTION_API_KEY');
 
         $response = Http::withHeaders([
             'apikey' => $apiKey,
