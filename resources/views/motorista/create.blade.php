@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+<x-app-layout>
     <div class="container">
         <h1>Cadastrar Motorista</h1>
 
@@ -35,5 +36,6 @@
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
     </div>
+</x-app-layout>
 </body>
 </html>

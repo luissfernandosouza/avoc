@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MotoristaController;
+use App\Http\Controllers\CaminhaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,5 +33,10 @@ Route::middleware('auth')->group(function () {
 // Define Motorista routes once for clarity
 Route::get('/motorista/create', [MotoristaController::class, 'create'])->name('motorista.create');
 Route::post('/motorista', [MotoristaController::class, 'store'])->name('motorista.store');
+
+
+Route::get('/caminhao/create', [CaminhaoController::class, 'create'])->name('caminhao.create');
+Route::post('/caminhao', [CaminhaoController::class, 'store'])->name('caminhao.store');
+
 
 require __DIR__.'/auth.php';
