@@ -35,6 +35,7 @@ Route::get('/motorista/create', [MotoristaController::class, 'create'])->name('m
 Route::post('/motorista', [MotoristaController::class, 'store'])->name('motorista.store');
 
 
+
 Route::get('/caminhao/create', [CaminhaoController::class, 'create'])->name('caminhao.create');
 Route::post('/caminhao', [CaminhaoController::class, 'store'])->name('caminhao.store');
 

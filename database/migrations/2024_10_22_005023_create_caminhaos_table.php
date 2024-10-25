@@ -17,6 +17,7 @@ return new class extends Migration
         $table->string('placa', 7)->unique();
         $table->integer('ano');
         $table->string('cor', 50);
+        $table->string('Renavan', 20)->unique();
         $table->timestamps();
     });
 }
