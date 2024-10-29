@@ -38,7 +38,7 @@ services:
         volumes:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
-            - "3300:3306"
+            - "3306:3306"
         networks:
             - laravel
 
@@ -62,6 +62,75 @@ services:
         networks:
             - laravel
 
+    # evolution api
+    api:
+        container_name: evolution_api
+        image: atendai/evolution-api:v2.1.0
+        restart: always
+        ports:
+            - 8085:8080
+        volumes:
+            - evolution_instances:/evolution/instances
+        networks:
+            - evolution-net
+        env_file:
+            - .env
+        expose:
+            - 8080
+
+    # redis for evolution api
+    redis-evolution:
+        image: redis:latest
+        networks:
+            - evolution-net
+        container_name: redis-evolution
+        command: >
+            redis-server --port 6379 --appendonly yes
+        volumes:
+            - evolution_redis:/data
+        ports:
+            - 6379:6379
+
+    # postgres
+    postgres:
+        container_name: postgres
+        image: postgres:15
+        networks:
+            - evolution-net
+        command: ["postgres", "-c", "max_connections=1000"]
+        restart: always
+        ports:
+            - 5432:5432
+        env_file:
+            - .env
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        expose:
+            - 5432
+
+    # pgadmin
+    pgadmin:
+        image: dpage/pgadmin4:latest
+        networks:
+            - evolution-net
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=souza.luisf16@gmail.com
+            - PGADMIN_DEFAULT_PASSWORD=123456
+        volumes:
+            - pgadmin_data:/var/lib/pgadmin
+        ports:
+            - 4000:80
+        links:
+            - postgres
+
+volumes:
+  evolution_instances:
+  evolution_redis:
+  postgres_data:
+  pgadmin_data:
+
 networks:
-    laravel:
-        driver: bridge
+  laravel:
+    driver: bridge
+  evolution-net:
+    driver: bridge

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MotoristaController;
 use App\Http\Controllers\CaminhaoController;
+use App\Http\Controllers\TransporteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,5 +40,6 @@ Route::post('/motorista', [MotoristaController::class, 'store'])->name('motorist
 Route::get('/caminhao/create', [CaminhaoController::class, 'create'])->name('caminhao.create');
 Route::post('/caminhao', [CaminhaoController::class, 'store'])->name('caminhao.store');
 
+Route::get('/transportes', [TransporteController::class, 'index'])->name('transportes.index');
 
 require __DIR__.'/auth.php';
