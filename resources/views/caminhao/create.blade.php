@@ -3,6 +3,7 @@
     <x-slot name="header">
         <h1>Cadastrar Caminhão</h1>
     </x-slot>
+    
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
