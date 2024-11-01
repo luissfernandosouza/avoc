@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-primary {
+    border: 2px solid black; /* Borda preta */
+    margin-top: 15px; /* Espaçamento acima */
+    padding: 10px 20px; /* Padding para aumentar o tamanho */
+    background-color: #007bff; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    font-weight: bold; /* Texto em negrito */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease; /* Animação de hover */
+    margin: 0 auto; /* Centraliza o elemento horizontalmente */
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Cor de fundo no hover */
+}
+.text-indigo-600{
+    border: 2px solid #0056b3; /* Borda preta */
+    border-radius: 15px;
+    padding: 10px 20px;
+}
+.case-width {
+    max-width: 400px; /* Define a largura máxima */
+    margin: 0 auto; /* Centraliza o elemento horizontalmente */
+}
+.form-group{
+    margin: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+.form-control{
+    width: 100%; /* ou defina uma largura específica, por exemplo, width: 300px; */
+    box-sizing: border-box; /* para garantir que padding e bordas não aumentem o tamanho total */
+}

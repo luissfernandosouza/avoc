@@ -12,6 +12,13 @@ class WhatsAppWebhookController extends Controller
      */
     public function handleReceivingMessageEvent(Request $request)
     {
+        // Valida o token da instância para autenticar a requisição
+        $instanceToken = env('EVOLUTION_INSTANCE_TOKEN');
+
+        if ($request->header('Authorization') !== "Bearer $instanceToken") {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
         // Captura a mensagem recebida
         $data = $request->all();
 
