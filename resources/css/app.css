@@ -43,3 +43,6 @@
     width: 100%; /* ou defina uma largura específica, por exemplo, width: 300px; */
     box-sizing: border-box; /* para garantir que padding e bordas não aumentem o tamanho total */
 }
+h1{
+    font-weight: bold;
+}
