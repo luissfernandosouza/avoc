@@ -15,7 +15,8 @@ return new class extends Migration
         $table->id();
         $table->string('modelo');
         $table->string('placa', 7)->unique();
-        $table->integer('ano');
+        $table->integer('ano_fabricacao');
+        $table->integer('ano_modelo');
         $table->string('cor', 50);
         $table->string('Renavan', 20)->unique();
         $table->timestamps();

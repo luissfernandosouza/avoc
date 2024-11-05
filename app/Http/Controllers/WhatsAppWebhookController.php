@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class WhatsAppWebhookController extends Controller
 {
@@ -12,24 +13,13 @@ class WhatsAppWebhookController extends Controller
      */
     public function handleReceivingMessageEvent(Request $request)
     {
-        // Valida o token da instância para autenticar a requisição
-        $instanceToken = env('EVOLUTION_INSTANCE_TOKEN');
-
-        if ($request->header('Authorization') !== "Bearer $instanceToken") {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        // Captura a mensagem recebida
+        
         $data = $request->all();
 
-        // Verifica o conteúdo da mensagem
-        $message = $data['message'] ?? '';
-        $phoneNumber = $data['sender'] ?? '';
+        $message = $data['data']['message']['conversation'] ?? '';
+        $phoneNumber = $data['data']['key']['remoteJid'] ?? '';
 
-        // Inicia o chatbot com base na mensagem
-        $response = $this->startChatbot($message, $phoneNumber);
-
-        return response()->json($response);
+        $this->startChatbot($message, $phoneNumber);
     }
 
     /**
@@ -58,15 +48,16 @@ class WhatsAppWebhookController extends Controller
      */
     protected function sendMessage($phoneNumber, $message)
     {
+        Log::info("aaaaaaaaaaaaaa");
         $apiUrl = getenv('EVOLUTION_API_URL');
         $apiKey = getenv('EVOLUTION_API_KEY');
 
         $response = Http::withHeaders([
             'apikey' => $apiKey,
             'Content-Type' => 'application/json',
-        ])->post("{$apiUrl}/send-message", [
-            'recipient' => $phoneNumber,
-            'message' => $message,
+        ])->post("{$apiUrl}/message/sendText/Luis", [
+            'number' => $phoneNumber,
+            'text' => $message,
         ]);
 
         return $response->json();

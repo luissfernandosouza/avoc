@@ -20,7 +20,11 @@
                             <input type="text" name="placa" id="placa" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="ano">Ano:</label>
+                            <label for="ano">Ano de Fabricação:</label>
+                            <input type="number" name="ano" id="ano" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ano">Ano do Modelo:</label>
                             <input type="number" name="ano" id="ano" class="form-control" required>
                         </div>
                         <div class="form-group">
