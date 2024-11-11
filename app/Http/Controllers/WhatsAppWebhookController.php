@@ -48,7 +48,6 @@ class WhatsAppWebhookController extends Controller
      */
     protected function sendMessage($phoneNumber, $message)
     {
-        Log::info("aaaaaaaaaaaaaa");
         $apiUrl = getenv('EVOLUTION_API_URL');
         $apiKey = getenv('EVOLUTION_API_KEY');
 
